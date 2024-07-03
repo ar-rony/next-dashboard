@@ -45,6 +45,9 @@ export default function Page() {
 
             />
         </div>
+        <div className="">
+          tumi jotoi hero hou na keno mortei hobe
+        </div>
       </div>
     </main>
   );
