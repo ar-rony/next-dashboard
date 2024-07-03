@@ -19,7 +19,7 @@ const Dashboard = async () => {
         <Card title="Total Invoices" value={""} type="invoices"/>
         <Card title="Total Customers" value={""} type="customers"/>
       </div>
-      <div className="mt-6 grid grid-cols-1">
+      <div className="mt-6 grid gap-6 grid-cols-1 md:grid-cols-4 lg:grid-cols-8">
         <RevenueChart revenue={revenue}/>
         <LatestInvoices latestInvoices={latestInvoices} />
       </div>
