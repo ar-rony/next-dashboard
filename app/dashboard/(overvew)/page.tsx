@@ -8,7 +8,7 @@ import CardWrapper from "../../ui/dashboard/cards";
 const Dashboard = async () => {
 
   return (
-    <main>
+    <main className="flex min-h-screen flex-col p-6">
       <h1 className={`${lusitana.className}  mb-4 text-xl md:text-2xl font-semibold uppercase`}>
         Dashboard
       </h1>
