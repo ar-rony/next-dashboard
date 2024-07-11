@@ -1,6 +1,7 @@
 import SideNav from "../ui/dashboard/sidenav";
 
-import React from 'react'
+export const experimental_ppr = true;
+
 
 const Layout = ({children}: {children: React.ReactNode}) => {
   return (
