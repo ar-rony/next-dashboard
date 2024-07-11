@@ -1,13 +1,12 @@
-import { GlobeAltIcon } from '@heroicons/react/24/outline';
+import {GlobeAltIcon} from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
-import React from 'react'
 
 const AurnoLogo = () => {
   return (
-    <div className='flex flex-row gap-2 justify-center items-center'>
-      <GlobeAltIcon />
-      <span className="font-bold text-2xl uppercase">Aurno</span>
-    </div>
+    <div className={`${lusitana.className} flex items-center text-white gap-2 leading-none`}>
+        <GlobeAltIcon className='h-12 w-12 rotate-[15deg]' />
+        <p className='text-[44px] uppercase'>Aurno</p>
+        </div>
   )
 }
 
