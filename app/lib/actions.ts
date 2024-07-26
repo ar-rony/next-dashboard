@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
  
 const FormSchema = z.object({
   id: z.string(),
@@ -81,12 +83,12 @@ export const updateInvoice = async ( id: string, prevState: State, formData: For
   try {
     await sql `UPDATE Invoices SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status} WHERE id = ${id}`;
   } catch (error) {
-    return { message: 'Database Error: Failed to update invoice'}
-  }
+    return { message: 'Database Error: Failed to update invoice'};
+  };
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
 }
-export async function deleteInvoice(id: string) {
+export const deleteInvoice = async (id: string) => {
   
   try {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
@@ -95,3 +97,20 @@ export async function deleteInvoice(id: string) {
   }
   revalidatePath('/dashboard/invoices');
 }
+
+export const authenticate = async (prevState: string | undefined, formData: FormData,) => {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if(error instanceof AuthError ){
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid Credentials.';      
+        default:
+          return 'Someting went wrong.';
+      }
+    }
+    throw error;
+  }
+}
+
